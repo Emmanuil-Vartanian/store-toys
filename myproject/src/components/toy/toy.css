@@ -1,0 +1,76 @@
+body {
+  font-family: "Roboto", Arial, sans-serif;
+}
+
+.slider-description-toy {
+  display: flex;
+  margin: 0 70px;
+  position: relative;
+}
+
+.more-products {
+  margin: 20px;
+  cursor: pointer;
+  font-size: 17px;
+}
+
+.slider {
+  width: 500px;
+}
+
+.toy-images {
+  width: 500px;
+}
+
+.description-toy {
+  margin: 0 40px;
+  color: black;
+}
+
+.title-toy {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1.35;
+  margin-bottom: 15px;
+}
+
+.price-toy {
+  font-size: 20px;
+  line-height: 1.35;
+  font-weight: 400;
+}
+
+.buy-toy {
+  background: black;
+  color: white;
+  width: 180px;
+  height: 45px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 3px;
+  font-weight: bold;
+  margin: 20px 0;
+  cursor: pointer;
+}
+
+pre {
+  font-family: "Roboto", Arial, sans-serif;
+  color: black;
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+.order-toy {
+  position: absolute;
+  height: 800px;
+  width: 480px;
+  top: 0;
+  left: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  margin: 100px;
+}
