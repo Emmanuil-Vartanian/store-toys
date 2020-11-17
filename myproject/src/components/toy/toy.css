@@ -16,6 +16,7 @@ body {
 
 .slider {
   width: 500px;
+  height: 500px;
 }
 
 .toy-images {
@@ -49,7 +50,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-bottom: 3px;
+  padding-bottom: 1px;
   font-weight: bold;
   margin: 20px 0;
   cursor: pointer;
@@ -60,17 +61,4 @@ pre {
   color: black;
   font-size: 16px;
   line-height: 1.55;
-}
-
-.order-toy {
-  position: absolute;
-  height: 800px;
-  width: 480px;
-  top: 0;
-  left: 25%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: white;
-  margin: 100px;
 }

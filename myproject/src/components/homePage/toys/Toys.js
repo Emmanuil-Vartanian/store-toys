@@ -10,7 +10,7 @@ const Toys = ({ title, price, image1 }) => {
         <Card.Img variant="top" src={`/images/${image1}`} />
         <Card.Body>
           <Card.Title>{title}</Card.Title>
-          <Card.Text>{price}</Card.Text>
+          <Card.Text>{price} грн.</Card.Text>
         </Card.Body>
       </Card>
     </div>

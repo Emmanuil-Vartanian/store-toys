@@ -20,7 +20,7 @@ class App extends Component {
 
   render() {
     return (
-      <Provider store={store}>
+      // <Provider store={store}>
         <Router history={history}>
           <Switch>
             {/* <Route exact path="/" component={HomePage} />
@@ -43,7 +43,7 @@ class App extends Component {
             />
           </Switch>
         </Router>
-      </Provider>
+      // </Provider>
     );
   }
 }
