@@ -5,7 +5,7 @@ import history from "../../history";
 
 import SliderImages from "./sliderImages/SliderImages";
 import Toys from "./toys/Toys";
-import toyDatabase from "../../toyDatabase/toyDatabase";
+import toyDatabase from "../../database/toys";
 
 class HomePage extends Component {
   constructor(props) {

@@ -1,7 +1,6 @@
 .catalog-toys {
-  padding: 100px;
+  padding: 100px 70px;
   text-align: center;
-  cursor: pointer;
 }
 
 .toysTitle {
@@ -16,5 +15,15 @@
 }
 
 .home-toy {
-  margin: 0 20px;
+  margin: 0 20px 50px;
+  width: 260px;
+  box-shadow: 1px 1px 10px 0 #d8d8d8;
+  border-radius: 5px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.home-toy:hover {
+  transform: scale(1.05);
 }

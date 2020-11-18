@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Carousel } from "react-bootstrap";
 
 import history from "../../history";
+import shoppingCartDatabase from "../../database/shoppingCart";
 
 import "./toy.css";
 
@@ -54,11 +55,19 @@ class Toy extends Component {
           </Carousel>
           <div className="description-toy">
             <div className="title-toy">{localStorage.getItem("title")}</div>
-            <div className="price-toy">{localStorage.getItem("price")}</div>
+            <div className="price-toy">
+              {localStorage.getItem("price")} грн.
+            </div>
             <div
               className="buy-toy"
               onClick={() => {
                 this.setState({ order: true });
+                shoppingCartDatabase.push({
+                  image: localStorage.getItem("image1"),
+                  title: localStorage.getItem("title"),
+                  price: localStorage.getItem("price"),
+                  quantityOfGoods: 1,
+                });
               }}
             >
               Купить

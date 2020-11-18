@@ -1,0 +1,29 @@
+.card-toy {
+  height: 100%;
+}
+
+.card-toy > img {
+  width: 260px;
+  height: 270px;
+}
+
+.title-price-toy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  color: black;
+}
+
+.card-title-toy {
+  margin-bottom: 50px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.bottom-price-toy {
+  position: absolute;
+  bottom: 15px;
+  font-size: 18px;
+  font-weight: 400;
+}
