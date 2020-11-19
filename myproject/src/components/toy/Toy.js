@@ -6,7 +6,7 @@ import shoppingCartDatabase from "../../database/shoppingCart";
 
 import "./toy.css";
 
-import OrderToy from "./orderToy/OrderToy";
+// import OrderToy from "./orderToy/OrderToy";
 
 class Toy extends Component {
   constructor(props) {
@@ -61,8 +61,30 @@ class Toy extends Component {
             <div
               className="buy-toy"
               onClick={() => {
+                this.props.order(true)
+                this.props.closeBasketToys(true)
                 this.setState({ order: true });
+                history.push("/")
+                document.body.style.overflow = "hidden"
+                // fetch("/shoppingCart", {
+                //   headers: {
+                //     Accept: "application/json",
+                //     "Content-type": "application/json",
+                //   },
+                //   method: "POST",
+                //   body: JSON.stringify({
+                //     id: localStorage.getItem("id"),
+                //     image: localStorage.getItem("image1"),
+                //     title: localStorage.getItem("title"),
+                //     price: localStorage.getItem("price"),
+                //     quantityOfGoods: 1,
+                //   }),
+                // })
+                //   .then((res) => res.json())
+                //   .then((data) => data);
+
                 shoppingCartDatabase.push({
+                  id: localStorage.getItem("id"),
                   image: localStorage.getItem("image1"),
                   title: localStorage.getItem("title"),
                   price: localStorage.getItem("price"),
@@ -76,9 +98,12 @@ class Toy extends Component {
           </div>
         </div>
 
-        {this.state.order ? (
-          <OrderToy closePurchase={this.closePurchase} />
-        ) : null}
+        {/* {this.state.order ? (
+          <OrderToy
+            closePurchase={this.closePurchase}
+            numberBuyToy={this.props.numberBuyToy}
+          />
+        ) : null} */}
       </div>
     );
   }

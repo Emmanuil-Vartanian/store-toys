@@ -1,5 +1,3 @@
-const shoppingCart = []
-
-console.log(shoppingCart);
+var shoppingCart = []
 
 export default shoppingCart

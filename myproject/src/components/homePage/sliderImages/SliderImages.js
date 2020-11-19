@@ -12,14 +12,14 @@ const SliderImages = () => {
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item interval={3000}>
-        <img className="d-block" src="/images/Typewriter flip from hand control.png" alt="Third slide" />
+        <img className="d-block" src="/images/Typewriter-flip-from-hand-control.png" alt="Third slide" />
         <Carousel.Caption>
           <h3>Second slide label</h3>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item interval={3000}>
-        <img className="d-block" src="/images/Multi-set for creativity.png" alt="Third slide" />
+        <img className="d-block" src="/images/Multi-set-for-creativity.png" alt="Third slide" />
         <Carousel.Caption>
           <h3>Third slide label</h3>
           <p>

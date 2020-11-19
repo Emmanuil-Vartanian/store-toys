@@ -5,81 +5,73 @@ import "./orderToy.css";
 import history from "../../../history";
 import shoppingCartDatabase from "../../../database/shoppingCart";
 
-class InformationAboutToy extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { numberToy: this.props.quantityOfGoods };
-  }
-
-  minusAndPlus = (choice) => {
-    choice === "minus"
-      ? this.setState({
-          numberToy: this.state.numberToy === 1 ? 1 : this.state.numberToy - 1,
-        })
-      : this.setState({ numberToy: this.state.numberToy + 1 });
-  };
-
-  render() {
-    return (
-      <div className="information-about-toy">
-        <div>
-          <img
-            className="image-toy"
-            src={`/images/${this.props.image}`}
-            alt="First slide"
-          />
-        </div>
-        <div className="title-color-toy">
-          <div className="toy-title">{this.props.title}</div>
-          <div className="color-toy">Цвет : Красный</div>
-        </div>
-        <div className="number-of-toys">
-          <div className="minus-toy" onClick={() => this.minusAndPlus("minus")}>
-            <img src="/images/minus.png" />
-          </div>
-          <div className="number-toy">{this.state.numberToy}</div>
-          <div className="plus-toy" onClick={() => this.minusAndPlus("plus")}>
-            <img src="/images/plus.png" />
-          </div>
-        </div>
-        <div className="toy-price">
-          {+this.props.price * this.state.numberToy} грн.
-        </div>
-        <div className="delete-toy" onClick={() => history.push("/")}>
-          <img src="/images/close.png" />
-        </div>
-      </div>
-    );
-  }
-}
+import InformationAboutToy from "./informationAboutToy/InformationAboutToy";
 
 class OrderToy extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { shoppingCartDatabase: shoppingCartDatabase };
+    // this.props.numberBuyToy(this.state.shoppingCartDatabase.length)
+    // console.log(this.state.shoppingCartDatabase.length);
+    // setTimeout(() => {
+    //   this.props.numberBuyToy(this.state.shoppingCartDatabase.length);
+    // }, 0);
+
+    // localStorage.setItem(
+    //   "numberBuyToy",
+    //   this.state.shoppingCartDatabase.length
+    // );
   }
+
+  // componentDidUpdate() {
+  // this.props.numberBuyToy(this.state.shoppingCartDatabase.length)
+  // }
+
+  handleDeleteElement = (id) => {
+    this.setState((prevState) => ({
+      shoppingCartDatabase: prevState.shoppingCartDatabase.filter(
+        (el) => el.id != id
+      ),
+    }));
+  };
 
   render() {
     return (
       <div className="order-toy">
         <div
           className="back-toy"
-          onClick={() => this.props.closePurchase(false)}
+          onClick={() => {
+            this.props.closePurchase(false);
+            document.body.style.overflow = "auto";
+          }}
         >
           Back
         </div>
 
+        {this.state.shoppingCartDatabase.length === 0
+          ? (this.props.closePurchase(false),
+            (document.body.style.overflow = "auto"),
+            this.props.closeBasketToys(false))
+          : console.log("0")}
+        {/* {console.log(shoppingCartDatabase.length)} */}
+        {/* {this.props.numberBuyToy(this.state.shoppingCartDatabase.length)} */}
+        {/* {this.state.shoppingCartDatabase.length !== 0
+          ? this.props.numberBuyToy(1)
+          : console.log("0")} */}
+
         <div className="data-for-buying-toys">
           <div className="order-title">Ваш заказ:</div>
-
           <div className="border-top-bottom">
-            {shoppingCartDatabase.map((el) => (
+            {this.state.shoppingCartDatabase.map((el) => (
               <InformationAboutToy
                 key={el.image + el.price}
+                id={el.id}
                 image={el.image}
                 title={el.title}
                 price={el.price}
                 quantityOfGoods={el.quantityOfGoods}
+                handleDeleteElement={this.handleDeleteElement}
+                shoppingCartDatabase={this.state.shoppingCartDatabase}
               />
             ))}
           </div>

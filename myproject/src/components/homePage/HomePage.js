@@ -1,21 +1,41 @@
 import React, { Component } from "react";
+import { ShoppingCartOutlined } from "@ant-design/icons";
 
+import "antd/dist/antd.css";
 import "./homePage.css";
 import history from "../../history";
 
 import SliderImages from "./sliderImages/SliderImages";
 import Toys from "./toys/Toys";
 import toyDatabase from "../../database/toys";
+import OrderToy from ".././toy/orderToy/OrderToy";
+import shoppingCartDatabase from "../../database/shoppingCart";
 
 class HomePage extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      order: this.props.order,
+      numberBuyToy: 0,
+      closeBasketToys: this.props.closeBasketToys,
+    };
   }
+
+  closePurchase = (order) => {
+    this.setState({ order: order });
+  };
+
+  closeBasketToys = (closeBasketToys) => {
+    this.setState({ closeBasketToys: closeBasketToys });
+  };
+
+  numberBuyToy = (number) => {
+    this.setState({ numberBuyToy: number });
+  };
 
   render() {
     return (
-      <div>
+      <div className="home-page-toy">
         <SliderImages />
         <div className="catalog-toys">
           <div className="toysTitle">Игрушки</div>
@@ -26,6 +46,7 @@ class HomePage extends Component {
                 className="home-toy"
                 onClick={() => {
                   history.push(`/${el.id}`);
+                  localStorage.setItem("id", el.id);
                   localStorage.setItem("title", el.title);
                   localStorage.setItem("price", el.price);
                   localStorage.setItem("description", el.description);
@@ -39,6 +60,28 @@ class HomePage extends Component {
             ))}
           </div>
         </div>
+
+        {this.state.closeBasketToys ? (
+          <div
+            className="basket-toys"
+            onClick={() => {
+              this.setState({ order: true });
+            }}
+          >
+            <div>
+              <ShoppingCartOutlined />
+              <div className="number-toys">{shoppingCartDatabase.length}</div>
+            </div>
+          </div>
+        ) : null}
+
+        {this.state.order ? (
+          <OrderToy
+            closePurchase={this.closePurchase}
+            numberBuyToy={this.numberBuyToy}
+            closeBasketToys={this.closeBasketToys}
+          />
+        ) : null}
       </div>
     );
   }

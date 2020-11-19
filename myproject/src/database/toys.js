@@ -41,9 +41,9 @@ const toys = [
 🚘размер машинки 33 см
 цвета: синий, салатовый и красный
 😜Машинка понравится не только детям, но и родителям`,
-    image1: "Typewriter flip from hand control1.png",
-    image2: "Typewriter flip from hand control2.png",
-    image3: "Typewriter flip from hand control3.png",
+    image1: "Typewriter-flip-from-hand-control1.png",
+    image2: "Typewriter-flip-from-hand-control2.png",
+    image3: "Typewriter-flip-from-hand-control3.png",
     price: "950",
   },
   {
@@ -58,9 +58,9 @@ const toys = [
   ✅ Практичный и прочный чемоданчик для безопасного хранения и перемещения
   ✅ Ячейки набора эргономичны – группы предметов разделены на секции
 В наличии синий и розовый цвет`,
-    image1: "Multi-set for creativity1.jpg",
-    image2: "Multi-set for creativity2.jpg",
-    image3: "Multi-set for creativity3.jpg",
+    image1: "Multi-set-for-creativity1.jpg",
+    image2: "Multi-set-for-creativity2.jpg",
+    image3: "Multi-set-for-creativity3.jpg",
     price: "295",
   },
   {
