@@ -120,3 +120,43 @@
   width: 20px;
   height: 20px;
 }
+
+.order-price {
+  padding-top: 30px;
+  padding-bottom: 20px;
+  font-size: 17px;
+  text-align: right;
+  font-weight: 600;
+  color: #000;
+}
+
+.order-form {
+  font-size: 16px;
+  color: #000000;
+}
+
+.order-form > div {
+  margin-bottom: 20px;
+}
+
+.order-form > div > input,
+.btn-form {
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  font-size: 18px;
+  letter-spacing: 0.5px;
+}
+
+.order-form > div > input:focus {
+  outline: none;
+}
+
+.btn-form {
+  margin-top: 8px;
+  background: black;
+  color: white;
+  padding: 12px;
+}

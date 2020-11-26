@@ -8,8 +8,8 @@ import history from "../../history";
 import SliderImages from "./sliderImages/SliderImages";
 import Toys from "./toys/Toys";
 import toyDatabase from "../../database/toys";
-import OrderToy from ".././toy/orderToy/OrderToy";
-import shoppingCartDatabase from "../../database/shoppingCart";
+// import shoppingCartDatabase from "../../database/shoppingCart";
+import { OrderToy, shoppingCart } from "./orderToy/OrderToy";
 
 class HomePage extends Component {
   constructor(props) {
@@ -61,20 +61,21 @@ class HomePage extends Component {
           </div>
         </div>
 
-        {this.state.closeBasketToys ? (
+        {this.state.closeBasketToys && !this.state.order ? (
           <div
             className="basket-toys"
             onClick={() => {
               this.setState({ order: true });
+              document.body.style.overflow = "hidden";
             }}
           >
             <div>
               <ShoppingCartOutlined />
-              <div className="number-toys">{shoppingCartDatabase.length}</div>
+              <div className="number-toys">{shoppingCart.length}</div>
             </div>
           </div>
         ) : null}
-
+        
         {this.state.order ? (
           <OrderToy
             closePurchase={this.closePurchase}

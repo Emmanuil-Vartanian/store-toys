@@ -17,7 +17,7 @@ const toys = [
     image1: "robot1.jpg",
     image2: "robot2.jpg",
     image3: "robot3.jpg",
-    price: "699",
+    price: 699,
   },
   {
     id: 2,
@@ -44,7 +44,7 @@ const toys = [
     image1: "Typewriter-flip-from-hand-control1.png",
     image2: "Typewriter-flip-from-hand-control2.png",
     image3: "Typewriter-flip-from-hand-control3.png",
-    price: "950",
+    price: 950,
   },
   {
     id: 3,
@@ -61,7 +61,7 @@ const toys = [
     image1: "Multi-set-for-creativity1.jpg",
     image2: "Multi-set-for-creativity2.jpg",
     image3: "Multi-set-for-creativity3.jpg",
-    price: "295",
+    price: 295,
   },
   {
     id: 4,
@@ -76,7 +76,7 @@ const toys = [
     image1: "safe1.jpg",
     image2: "safe2.jpg",
     image3: "safe3.jpg",
-    price: "380",
+    price: 380,
   },
 ];
 

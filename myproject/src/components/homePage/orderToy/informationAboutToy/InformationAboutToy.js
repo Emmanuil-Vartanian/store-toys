@@ -3,7 +3,10 @@ import React, { Component } from "react";
 class InformationAboutToy extends Component {
   constructor(props) {
     super(props);
-    this.state = { numberToy: 1 };
+    this.state = {
+      numberToy: 1,
+      sumAllPriceToys: () => this.props.price * this.state.numberToy,
+    };
   }
 
   minusAndPlus = (choice) => {
@@ -29,25 +32,41 @@ class InformationAboutToy extends Component {
           <div className="color-toy">Цвет : Красный</div>
         </div>
         <div className="number-of-toys">
-          <div className="minus-toy" onClick={() => this.minusAndPlus("minus")}>
+          <div
+            className="minus-toy"
+            onClick={() => {
+              this.minusAndPlus("minus");
+
+              setTimeout(() => {
+                return this.props.sumAllPriceToys(this.state.numberToy);
+              }, 0);
+            }}
+          >
             <img src="/images/minus.png" />
           </div>
           <div className="number-toy">{this.state.numberToy}</div>
-          <div className="plus-toy" onClick={() => this.minusAndPlus("plus")}>
+          <div
+            className="plus-toy"
+            onClick={() => {
+              this.minusAndPlus("plus");
+
+              setTimeout(() => {
+                return this.props.sumAllPriceToys(this.state.numberToy);
+              }, 0);
+            }}
+          >
             <img src="/images/plus.png" />
           </div>
         </div>
-        <div className="toy-price">
-          {+this.props.price * this.state.numberToy} грн.
-        </div>
+        <div className="toy-price">{this.state.sumAllPriceToys()} грн.</div>
         <div
           className="delete-toy"
           onClick={() => {
-            const index = this.props.shoppingCartDatabase.findIndex(
+            const index = this.props.shoppingCart.findIndex(
               (n) => n.id === this.props.id
             );
             if (index !== -1) {
-              this.props.shoppingCartDatabase.splice(index, 1);
+              this.props.shoppingCart.splice(index, 1);
             }
             this.props.handleDeleteElement(this.props.id);
           }}
@@ -59,4 +78,4 @@ class InformationAboutToy extends Component {
   }
 }
 
-export default InformationAboutToy
+export default InformationAboutToy;

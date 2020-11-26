@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { Carousel } from "react-bootstrap";
 
 import history from "../../history";
-import shoppingCartDatabase from "../../database/shoppingCart";
+// import shoppingCartDatabase from "../../database/shoppingCart";
+import { shoppingCart } from "../homePage/orderToy/OrderToy";
 
 import "./toy.css";
 
@@ -61,33 +62,18 @@ class Toy extends Component {
             <div
               className="buy-toy"
               onClick={() => {
-                this.props.order(true)
-                this.props.closeBasketToys(true)
+                this.props.order(true);
+                this.props.closeBasketToys(true);
                 this.setState({ order: true });
-                history.push("/")
-                document.body.style.overflow = "hidden"
-                // fetch("/shoppingCart", {
-                //   headers: {
-                //     Accept: "application/json",
-                //     "Content-type": "application/json",
-                //   },
-                //   method: "POST",
-                //   body: JSON.stringify({
-                //     id: localStorage.getItem("id"),
-                //     image: localStorage.getItem("image1"),
-                //     title: localStorage.getItem("title"),
-                //     price: localStorage.getItem("price"),
-                //     quantityOfGoods: 1,
-                //   }),
-                // })
-                //   .then((res) => res.json())
-                //   .then((data) => data);
+                history.push("/");
+                document.body.style.overflow = "hidden";
 
-                shoppingCartDatabase.push({
+                shoppingCart.push({
                   id: localStorage.getItem("id"),
                   image: localStorage.getItem("image1"),
                   title: localStorage.getItem("title"),
-                  price: localStorage.getItem("price"),
+                  price: +localStorage.getItem("price"),
+                  price1: (num = 3) => +localStorage.getItem("price") * num,
                   quantityOfGoods: 1,
                 });
               }}
@@ -97,13 +83,6 @@ class Toy extends Component {
             <pre>{localStorage.getItem("description")}</pre>
           </div>
         </div>
-
-        {/* {this.state.order ? (
-          <OrderToy
-            closePurchase={this.closePurchase}
-            numberBuyToy={this.props.numberBuyToy}
-          />
-        ) : null} */}
       </div>
     );
   }
