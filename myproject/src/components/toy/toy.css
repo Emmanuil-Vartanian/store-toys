@@ -27,11 +27,13 @@ body {
 }
 
 .left-stick {
+  top: 20px;
   right: 20px;
   transform: rotate(45deg);
 }
 
 .right-stick {
+  top: 20px;
   right: 20px;
   transform: rotate(135deg);
 }
@@ -107,9 +109,10 @@ body {
   }
   .back-products {
     display: block;
-    padding: 16px;
+    height: 40px;
     background: black;
     position: relative;
+    cursor: pointer;
   }
   .title-toy {
     font-size: 20px;

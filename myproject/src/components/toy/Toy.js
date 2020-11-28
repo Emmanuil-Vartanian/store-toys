@@ -28,9 +28,18 @@ class Toy extends Component {
       <div className="toy">
         <div
           className="more-products"
-          onClick={() => history.push("/")}
+          onClick={() => {
+            history.push("/");
+            this.props.order(false);
+          }}
         >{`<-- Больше товаров`}</div>
-        <div className="back-products" onClick={() => history.push("/")}>
+        <div
+          className="back-products"
+          onClick={() => {
+            history.push("/");
+            this.props.order(false);
+          }}
+        >
           <div className="left-stick"></div>
           <div className="right-stick"></div>
         </div>

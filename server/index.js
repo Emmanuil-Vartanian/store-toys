@@ -1,5 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+var cors = require('cors')
 // const { graphqlHTTP } = require("express-graphql");
 const app = express();
 
@@ -9,6 +10,7 @@ const mailer = require("./smtpGmail");
 
 app.use(bodyParser.json());
 app.use(express.static("myproject"));
+app.use(cors())
 
 var users = [];
 
