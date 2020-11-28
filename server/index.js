@@ -9,7 +9,7 @@ const mailer = require("./smtpGmail");
 // const { root } = require("./graphQL/resolvers/resolvers");
 
 app.use(bodyParser.json());
-app.use(express.static("myproject"));
+app.use(express.static("build"));
 app.use(cors())
 
 var users = [];
