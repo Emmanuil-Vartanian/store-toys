@@ -14,9 +14,31 @@ body {
   font-size: 17px;
 }
 
+.back-products {
+  display: none;
+}
+
+.left-stick,
+.right-stick {
+  width: 20px;
+  height: 1px;
+  background: white;
+  position: absolute;
+}
+
+.left-stick {
+  right: 20px;
+  transform: rotate(45deg);
+}
+
+.right-stick {
+  right: 20px;
+  transform: rotate(135deg);
+}
+
 .slider {
-  width: 500px;
-  height: 500px;
+  max-width: 500px;
+  height: auto;
 }
 
 .toy-images {
@@ -56,9 +78,56 @@ body {
   cursor: pointer;
 }
 
-pre {
+.description {
   font-family: "Roboto", Arial, sans-serif;
   color: black;
   font-size: 16px;
   line-height: 1.55;
+}
+
+.descriptionForWidth320px {
+  display: none;
+}
+
+@media screen and (min-width: 320px) {
+  .slider-description-toy {
+    display: block;
+    margin: 0;
+    text-align: start;
+    padding: 0 19px;
+  }
+  .slider {
+    margin: 10px 0;
+  }
+  .description-toy {
+    margin: 0;
+  }
+  .more-products {
+    display: none;
+  }
+  .back-products {
+    display: block;
+    padding: 16px;
+    background: black;
+    position: relative;
+  }
+  .title-toy {
+    font-size: 20px;
+  }
+  .price-toy {
+    font-size: 18px;
+  }
+  .buy-toy {
+    width: 100%;
+  }
+  .description {
+    display: none;
+  }
+  .descriptionForWidth320px {
+    display: block;
+    font-family: "Roboto", Arial, sans-serif;
+    color: black;
+    font-size: 12px;
+    line-height: 1.55;
+  }
 }

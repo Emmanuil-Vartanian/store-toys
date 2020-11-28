@@ -56,7 +56,7 @@ class OrderToy extends Component {
   render() {
     return (
       <div className="order-toy">
-        <div
+        {/* <div
           className="back-toy"
           onClick={() => {
             this.props.closePurchase(false);
@@ -64,6 +64,16 @@ class OrderToy extends Component {
           }}
         >
           Back
+        </div> */}
+        <div
+          className="back-toy"
+          onClick={() => {
+            this.props.closePurchase(false);
+            document.body.style.overflow = "auto";
+          }}
+        >
+          <div className="left-stick"></div>
+          <div className="right-stick"></div>
         </div>
 
         {this.state.shoppingCartDatabase.length === 0

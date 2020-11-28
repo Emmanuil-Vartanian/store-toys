@@ -30,25 +30,29 @@ class Toy extends Component {
           className="more-products"
           onClick={() => history.push("/")}
         >{`<-- Больше товаров`}</div>
+        <div className="back-products" onClick={() => history.push("/")}>
+          <div className="left-stick"></div>
+          <div className="right-stick"></div>
+        </div>
         <div className="slider-description-toy">
           <Carousel className="slider">
             <Carousel.Item interval={9999999}>
               <img
-                className="d-block toy-images"
+                className="d-block toy-images img-fluid"
                 src={`/images/${localStorage.getItem("image1")}`}
                 alt="First slide"
               />
             </Carousel.Item>
             <Carousel.Item interval={9999999} style={{ height: "500px" }}>
               <img
-                className="d-block toy-images"
+                className="d-block toy-images img-fluid"
                 src={`/images/${localStorage.getItem("image2")}`}
                 alt="Third slide"
               />
             </Carousel.Item>
             <Carousel.Item interval={9999999}>
               <img
-                className="d-block toy-images"
+                className="d-block toy-images img-fluid"
                 src={`/images/${localStorage.getItem("image3")}`}
                 alt="Third slide"
               />
@@ -80,7 +84,12 @@ class Toy extends Component {
             >
               Купить
             </div>
-            <pre>{localStorage.getItem("description")}</pre>
+            <pre className="description">
+              {localStorage.getItem("description")}
+            </pre>
+            <pre className="descriptionForWidth320px">
+              {localStorage.getItem("descriptionForWidth320px")}
+            </pre>
           </div>
         </div>
       </div>

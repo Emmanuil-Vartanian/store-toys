@@ -160,3 +160,58 @@
   color: white;
   padding: 12px;
 }
+
+@media screen and (min-width: 320px) {
+  .order-toy {
+    background-color: black;
+    position: fixed;
+  }
+  .data-for-buying-toys {
+    margin: 40px auto 0;
+    padding: 20px;
+  }
+  .order-title {
+    font-size: 20px;
+    padding-bottom: 20px;
+  }
+  .information-about-toy {
+    padding: 15px 0 20px;
+    margin: 15px 0 20px;
+    flex-wrap: wrap;
+    position: relative;
+  }
+  .title-color-toy {
+    padding: 0 10px 0 15px;
+  }
+  .toy-title {
+    line-height: 1.2;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 180px;
+    height: 40px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+  .number-of-toys {
+    position: absolute;
+    bottom: -5px;
+    right: 94px;
+  }
+  .toy-price {
+    position: absolute;
+    bottom: -2px;
+    right: 25px;
+  }
+  .delete-toy {
+    position: absolute;
+    top: 19px;
+    right: 0;
+  }
+  .order-form > div > input,
+  .btn-form {
+    padding: 6px 10px;
+    margin-top: 5px;
+    font-size: 16px;
+  }
+}

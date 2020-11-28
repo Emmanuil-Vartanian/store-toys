@@ -27,3 +27,41 @@
   font-size: 18px;
   font-weight: 400;
 }
+
+@media screen and (min-width: 320px) {
+  .catalog-toys {
+    padding: 25px 10px;
+  }
+  .toysTitle {
+    margin-bottom: 30px;
+    font-size: 25px;
+  }
+  .home-toy {
+    margin: 0 10px 35px;
+    width: 130px;
+  }
+  .card-toy > img {
+    width: 130px;
+    height: 140px;
+  }
+  .title-price-toy {
+    margin-top: 10px;
+  }
+  .card-title-toy {
+    margin-bottom: 45px;
+    font-size: 14px;
+  }
+  .bottom-price-toy {
+    bottom: 15px;
+    font-size: 14px;
+  }
+  .card-title-toy {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 180px;
+    height: 45px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+}
