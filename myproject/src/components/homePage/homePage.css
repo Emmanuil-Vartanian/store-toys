@@ -16,11 +16,13 @@
 .toys {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .home-toy {
   margin: 0 20px 50px;
-  width: 260px;
+  max-width: 21%;
+  height: auto;
   box-shadow: 1px 1px 10px 0 #d8d8d8;
   border-radius: 5px;
   position: relative;
@@ -85,7 +87,7 @@
   }
 } */
 
-@media screen and (min-width: 320px) {
+@media screen and (min-width: 320px) and (max-device-width : 480px)  {
   .basket-toys {
     width: 45px;
     height: 45px;

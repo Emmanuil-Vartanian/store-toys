@@ -168,7 +168,7 @@
   padding: 20px;
 }
 
-@media screen and (min-width: 320px) {
+@media screen and (min-width: 320px) and (max-device-width : 480px) {
   .order-toy {
     background-color: black;
     position: fixed;
@@ -202,13 +202,13 @@
   }
   .number-of-toys {
     position: absolute;
-    bottom: -5px;
-    right: 94px;
+    bottom: 20px;
+    right: 35px;
   }
   .toy-price {
     position: absolute;
-    bottom: -2px;
-    right: 25px;
+    bottom: 23px;
+    right: -21px;
   }
   .delete-toy {
     position: absolute;

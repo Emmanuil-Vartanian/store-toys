@@ -3,8 +3,8 @@
 }
 
 .card-toy > img {
-  width: 260px;
-  height: 270px;
+  max-width: 100%;
+  height: auto;
 }
 
 .title-price-toy {
@@ -28,7 +28,7 @@
   font-weight: 400;
 }
 
-@media screen and (min-width: 320px) {
+@media screen and (min-width: 320px) and (max-device-width: 480px) {
   .catalog-toys {
     padding: 25px 10px;
   }
@@ -38,11 +38,7 @@
   }
   .home-toy {
     margin: 0 10px 35px;
-    width: 130px;
-  }
-  .card-toy > img {
-    width: 130px;
-    height: 140px;
+    max-width: 40%;
   }
   .title-price-toy {
     margin-top: 10px;
