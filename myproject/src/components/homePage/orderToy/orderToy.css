@@ -163,12 +163,12 @@
 
 .successful-sending-of-data {
   text-align: center;
-  background: #62C584;
+  background: #62c584;
   color: #fff;
   padding: 20px;
 }
 
-@media screen and (min-width: 320px) and (max-device-width : 480px) {
+@media screen and (max-width: 480px) {
   .order-toy {
     background-color: black;
     position: fixed;
@@ -220,5 +220,16 @@
     padding: 6px 10px;
     margin-top: 5px;
     font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .number-of-toys {
+    bottom: -5px;
+    right: 95px;
+  }
+  .toy-price {
+    bottom: -1px;
+    right: 30px;
   }
 }

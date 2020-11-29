@@ -52,7 +52,7 @@ class Toy extends Component {
                 alt="First slide"
               />
             </Carousel.Item>
-            <Carousel.Item interval={9999999} style={{ height: "500px" }}>
+            <Carousel.Item interval={9999999}>
               <img
                 className="d-block toy-images img-fluid"
                 src={`/images/${localStorage.getItem("image2")}`}
@@ -79,16 +79,44 @@ class Toy extends Component {
                 this.props.closeBasketToys(true);
                 this.setState({ order: true });
                 history.push("/");
+                // console.log(localStorage.getItem("id"));
                 document.body.style.overflow = "hidden";
 
-                shoppingCart.push({
-                  id: localStorage.getItem("id"),
-                  image: localStorage.getItem("image1"),
-                  title: localStorage.getItem("title"),
-                  price: +localStorage.getItem("price"),
-                  price1: (num = 3) => +localStorage.getItem("price") * num,
-                  quantityOfGoods: 1,
-                });
+                if (shoppingCart.length === 0) {
+                  shoppingCart.push({
+                    id: localStorage.getItem("id"),
+                    image: localStorage.getItem("image1"),
+                    title: localStorage.getItem("title"),
+                    price: +localStorage.getItem("price"),
+                    price1: (num = 3) => +localStorage.getItem("price") * num,
+                    quantityOfGoods: 1,
+                  });
+                } else {
+                  for (const key of shoppingCart) {
+                    console.log(localStorage.getItem("id"));
+                    console.log(key.id);
+                    if (localStorage.getItem("id") !== key.id) {
+                      shoppingCart.push({
+                        id: localStorage.getItem("id"),
+                        image: localStorage.getItem("image1"),
+                        title: localStorage.getItem("title"),
+                        price: +localStorage.getItem("price"),
+                        price1: (num = 3) =>
+                          +localStorage.getItem("price") * num,
+                        quantityOfGoods: 1,
+                      });
+                    } else console.log("no");
+                  }
+                }
+
+                // shoppingCart.push({
+                //   id: localStorage.getItem("id"),
+                //   image: localStorage.getItem("image1"),
+                //   title: localStorage.getItem("title"),
+                //   price: +localStorage.getItem("price"),
+                //   price1: (num = 3) => +localStorage.getItem("price") * num,
+                //   quantityOfGoods: 1,
+                // });
               }}
             >
               Купить
