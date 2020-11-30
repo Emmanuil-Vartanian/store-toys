@@ -33,7 +33,7 @@ class OrderToy extends Component {
   };
 
   sendingDataToMail = (dataToys) => {
-    fetch("http://localhost:5556/user", {
+    fetch("/user", {
       method: "POST",
       headers: {
         Accept: "application/json",
