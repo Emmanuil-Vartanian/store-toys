@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Carousel } from "react-bootstrap";
 
 import history from "../../history";
+import toyDatabase from "../../database/toys";
 // import shoppingCartDatabase from "../../database/shoppingCart";
 import { shoppingCart } from "../homePage/orderToy/OrderToy";
 
@@ -12,7 +13,7 @@ import "./toy.css";
 class Toy extends Component {
   constructor(props) {
     super(props);
-    this.state = { order: false };
+    this.state = { order: false, colorsToy: localStorage.getItem("colors") };
   }
 
   closePurchase = (order) => {
@@ -72,6 +73,29 @@ class Toy extends Component {
             <div className="price-toy">
               {localStorage.getItem("price")} грн.
             </div>
+
+            {toyDatabase.map((e) =>
+              +localStorage.getItem("id") === e.id ? (
+                e.colors.length ? (
+                  <div key={e.id} className="choose-color">
+                    Цвет
+                    <select
+                      className="colors"
+                      onChange={(el) => {
+                        this.setState({ colorsToy: el.target.value });
+                      }}
+                    >
+                      {e.colors.map((e) => (
+                        <option key={e} value={e}>
+                          {e}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                ) : null
+              ) : null
+            )}
+
             <div
               className="buy-toy"
               onClick={() => {
@@ -79,44 +103,19 @@ class Toy extends Component {
                 this.props.closeBasketToys(true);
                 this.setState({ order: true });
                 history.push("/");
-                // console.log(localStorage.getItem("id"));
                 document.body.style.overflow = "hidden";
 
-                if (shoppingCart.length === 0) {
-                  shoppingCart.push({
-                    id: localStorage.getItem("id"),
-                    image: localStorage.getItem("image1"),
-                    title: localStorage.getItem("title"),
-                    price: +localStorage.getItem("price"),
-                    price1: (num = 3) => +localStorage.getItem("price") * num,
-                    quantityOfGoods: 1,
-                  });
-                } else {
-                  for (const key of shoppingCart) {
-                    console.log(localStorage.getItem("id"));
-                    console.log(key.id);
-                    if (localStorage.getItem("id") !== key.id) {
-                      shoppingCart.push({
-                        id: localStorage.getItem("id"),
-                        image: localStorage.getItem("image1"),
-                        title: localStorage.getItem("title"),
-                        price: +localStorage.getItem("price"),
-                        price1: (num = 3) =>
-                          +localStorage.getItem("price") * num,
-                        quantityOfGoods: 1,
-                      });
-                    } else console.log("no");
-                  }
-                }
-
-                // shoppingCart.push({
-                //   id: localStorage.getItem("id"),
-                //   image: localStorage.getItem("image1"),
-                //   title: localStorage.getItem("title"),
-                //   price: +localStorage.getItem("price"),
-                //   price1: (num = 3) => +localStorage.getItem("price") * num,
-                //   quantityOfGoods: 1,
-                // });
+                shoppingCart.push({
+                  id: localStorage.getItem("id"),
+                  image: localStorage.getItem("image1"),
+                  title: localStorage.getItem("title"),
+                  price: +localStorage.getItem("price"),
+                  quantityOfGoods: 1,
+                  colorsToy:
+                    this.state.colorsToy !== "undefined"
+                      ? this.state.colorsToy
+                      : "",
+                });
               }}
             >
               Купить

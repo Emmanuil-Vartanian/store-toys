@@ -104,6 +104,7 @@ class OrderToy extends Component {
                     closePurchase={this.props.closePurchase}
                     sumAllPriceToys={this.sumAllPriceToys}
                     deleteTheSameObject={this.deleteTheSameObject}
+                    colorsToy={el.colorsToy}
                   />
                 ))}
               </div>
@@ -124,7 +125,7 @@ class OrderToy extends Component {
 
               <div className="order-form">
                 <div className="firstName">
-                  Имя:
+                  Имя <span>*</span>
                   <input
                     type="text"
                     value={this.state.firstName}
@@ -134,7 +135,7 @@ class OrderToy extends Component {
                   />
                 </div>
                 <div className="lastName">
-                  Фамилия:
+                  Фамилия <span>*</span>
                   <input
                     type="text"
                     value={this.state.lastName}
@@ -143,8 +144,47 @@ class OrderToy extends Component {
                     }
                   />
                 </div>
+                <div className="telephone">
+                  Телефон <span>*</span>
+                  <input
+                    type="tel"
+                    value={this.state.telephone}
+                    onChange={(e) =>
+                      this.setState({ telephone: e.target.value })
+                    }
+                    onKeyPress={(evt) => {
+                      var theEvent = evt || window.event;
+                      var key = theEvent.keyCode || theEvent.which;
+                      key = String.fromCharCode(key);
+                      var regex = /^(\d)$/g;
+
+                      if (!regex.test(key)) {
+                        theEvent.returnValue = false;
+                        if (theEvent.preventDefault) theEvent.preventDefault();
+                      }
+                    }}
+                  />
+                </div>
+                <div className="delivery">
+                  Доставка <span>*</span> <br />
+                  <input
+                    type="radio"
+                    name="delivery"
+                    id="radio1"
+                    className="custom-radio"
+                  />
+                  <label for="radio1">Самовывоз</label>
+                  <br />
+                  <input
+                    type="radio"
+                    name="delivery"
+                    id="radio2"
+                    className="custom-radio"
+                  />
+                  <label for="radio2">Новой почтой</label>
+                </div>
                 <div className="city">
-                  Город:
+                  Город <span>*</span>
                   <input
                     type="text"
                     value={this.state.city}
@@ -152,22 +192,11 @@ class OrderToy extends Component {
                   />
                 </div>
                 <div className="newMail">
-                  Отделение новой почты:
+                  Отделение новой почты <span>*</span>
                   <input
                     type="text"
                     value={this.state.newMail}
                     onChange={(e) => this.setState({ newMail: e.target.value })}
-                  />
-                </div>
-                <div className="telephone">
-                  Ваш телефон:
-                  <input
-                    type="tel"
-                    pattern="2[0-9]{3}-[0-9]{3}"
-                    value={this.state.telephone}
-                    onChange={(e) =>
-                      this.setState({ telephone: e.target.value })
-                    }
                   />
                 </div>
                 <button
@@ -177,6 +206,13 @@ class OrderToy extends Component {
                       this.sendingDataToMail(this.state.shoppingCartDatabase);
                     }, 0);
                   }}
+                  disabled={
+                    !this.state.firstName ||
+                    !this.state.lastName ||
+                    !this.state.city ||
+                    !this.state.newMail ||
+                    !this.state.telephone
+                  }
                 >
                   Оформить заказ
                 </button>
@@ -186,7 +222,8 @@ class OrderToy extends Component {
 
           {this.state.successfulSendingOfData ? (
             <div className="successful-sending-of-data">
-              Спасибо! Данные успешно отправлены.
+              Спасибо! Данные успешно отправлены. В ближайшее время с Вами
+              свяжутся!
             </div>
           ) : null}
         </div>

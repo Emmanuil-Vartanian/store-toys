@@ -29,7 +29,9 @@ class InformationAboutToy extends Component {
         </div>
         <div className="title-color-toy">
           <div className="toy-title">{this.props.title}</div>
-          <div className="color-toy">Цвет : Красный</div>
+          {this.props.colorsToy.length ? (
+            <div className="color-toy">Цвет : {this.props.colorsToy}</div>
+          ) : null}
         </div>
         <div className="number-of-toys">
           <div

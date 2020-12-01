@@ -91,6 +91,28 @@ body {
   display: none;
 }
 
+.choose-color {
+  display: flex;
+  flex-direction: column;
+}
+
+.colors {
+  font-size: 15px;
+  width: 140px;
+  border: 1px #ddd solid;
+  background: #f8f8f8;
+  color: #000;
+  box-sizing: border-box;
+  cursor: pointer;
+  padding: 2px 0 2px 10px;
+  margin-top: 3px;
+  border-radius: 5px;
+}
+
+.colors:focus {
+  outline: none;
+}
+
 @media screen and (max-width: 480px) {
   .slider-description-toy {
     display: block;

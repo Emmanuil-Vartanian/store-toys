@@ -41,10 +41,12 @@ class HomePage extends Component {
           <div className="toysTitle">Игрушки</div>
           <div className="toys">
             {toyDatabase.map((el) => (
+              // console.log(el),
               <div
                 key={el.id}
                 className="home-toy"
                 onClick={() => {
+                  // console.log(el.colors);
                   history.push(`/${el.id}`);
                   localStorage.setItem("id", el.id);
                   localStorage.setItem("title", el.title);
@@ -54,6 +56,7 @@ class HomePage extends Component {
                   localStorage.setItem("image1", el.image1);
                   localStorage.setItem("image2", el.image2);
                   localStorage.setItem("image3", el.image3);
+                  localStorage.setItem("colors", el.colors[0]);
                 }}
               >
                 <Toys title={el.title} price={el.price} image1={el.image1} />
@@ -82,6 +85,7 @@ class HomePage extends Component {
             closePurchase={this.closePurchase}
             numberBuyToy={this.numberBuyToy}
             closeBasketToys={this.closeBasketToys}
+            colorsToy={this.props.colorsToy}
           />
         ) : null}
       </div>

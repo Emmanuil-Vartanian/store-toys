@@ -11,7 +11,7 @@ import history from "./history";
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { order: false, closeBasketToys: false };
+    this.state = { order: false, closeBasketToys: false, colorsToy: "" };
   }
 
   order = (order) => {
@@ -22,13 +22,15 @@ class App extends Component {
     this.setState({ closeBasketToys: closeBasketToys });
   };
 
+  colorsToy = (colorsToy) => {
+    this.setState({ colorsToy: colorsToy });
+  };
+
   render() {
     return (
       // <Provider store={store}>
       <Router history={history}>
         <Switch>
-          {/* <Route exact path="/" component={HomePage} />
-          <Route exact path="/:id" component={Toy} /> */}
           <Route
             exact
             path="/"
@@ -36,6 +38,7 @@ class App extends Component {
               <HomePage
                 order={this.state.order}
                 closeBasketToys={this.state.closeBasketToys}
+                colorsToy={this.state.colorsToy}
               />
             )}
           />
@@ -43,7 +46,11 @@ class App extends Component {
             exact
             path="/:id"
             render={() => (
-              <Toy order={this.order} closeBasketToys={this.closeBasketToys} />
+              <Toy
+                order={this.order}
+                closeBasketToys={this.closeBasketToys}
+                colorsToy={this.colorsToy}
+              />
             )}
           />
         </Switch>

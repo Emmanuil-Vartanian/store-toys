@@ -1,6 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-var cors = require('cors')
+var cors = require("cors");
 // const { graphqlHTTP } = require("express-graphql");
 const app = express();
 
@@ -10,7 +10,7 @@ const mailer = require("./smtpGmail");
 
 app.use(bodyParser.json());
 app.use(express.static("build"));
-app.use(cors())
+app.use(cors());
 
 var users = [];
 
@@ -31,8 +31,11 @@ app.post("/user", (req, res) => {
       Отделение новой почты: ${req.body.newMail}
       Телефон: ${req.body.telephone}
       
-      Название игрушек: ${req.body.dataToys.map(obj => obj.title)}
-      Цена игрушек: ${req.body.dataToys.map(obj => obj.price)}`
+      Название игрушек: ${req.body.dataToys.map((obj) => obj.title)}
+      Цена игрушек: ${req.body.dataToys.map((obj) => obj.price)}
+      Цвет игрушек: ${req.body.dataToys.map((obj) =>
+        obj.colorsToy === "" ? "натуральный цвет" : obj.colorsToy
+      )}`,
   };
   mailer(message);
   res.status(201).send(req.body);
@@ -46,7 +49,6 @@ app.post("/user", (req, res) => {
 //     graphiql: true,
 //   })
 // );
-
 
 // app.get("/user", (req, res) => {
 //   res.send(JSON.stringify(users));
