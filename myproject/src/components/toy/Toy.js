@@ -44,43 +44,34 @@ class Toy extends Component {
           <div className="left-stick"></div>
           <div className="right-stick"></div>
         </div>
-        <div className="slider-description-toy">
-          <Carousel className="slider">
-            <Carousel.Item interval={9999999}>
-              <img
-                className="d-block toy-images img-fluid"
-                src={`/images/${localStorage.getItem("image1")}`}
-                alt="First slide"
-              />
-            </Carousel.Item>
-            <Carousel.Item interval={9999999}>
-              <img
-                className="d-block toy-images img-fluid"
-                src={`/images/${localStorage.getItem("image2")}`}
-                alt="Third slide"
-              />
-            </Carousel.Item>
-            <Carousel.Item interval={9999999}>
-              <img
-                className="d-block toy-images img-fluid"
-                src={`/images/${localStorage.getItem("image3")}`}
-                alt="Third slide"
-              />
-            </Carousel.Item>
-          </Carousel>
-          <div className="description-toy">
-            <div className="title-toy">{localStorage.getItem("title")}</div>
-            <div className="price-toy">
-              {localStorage.getItem("price")} грн.
-            </div>
 
-            {toyDatabase.map((e) =>
-              +localStorage.getItem("id") === e.id ? (
-                e.colors.length ? (
+        {toyDatabase.map((e) =>
+          +localStorage.getItem("id") === e.id ? (
+            <div className="slider-description-toy">
+              <Carousel className="slider">
+                {e.images.length
+                  ? e.images.map((e) => (
+                      <Carousel.Item interval={9999999} key={e}>
+                        <img
+                          className="d-block toy-images img-fluid"
+                          src={`/images/${e}`}
+                          alt="First slide"
+                        />
+                      </Carousel.Item>
+                    ))
+                  : null}
+              </Carousel>
+
+              <div className="description-toy">
+                <div className="title-toy">{localStorage.getItem("title")}</div>
+                <div className="price-toy">
+                  {localStorage.getItem("price")} грн.
+                </div>
+                {e.colors.length ? (
                   <div key={e.id} className="choose-color">
                     Цвет
                     <select
-                      className="colors"
+                      className="colors js-example-basic-single"
                       onChange={(el) => {
                         this.setState({ colorsToy: el.target.value });
                       }}
@@ -92,42 +83,57 @@ class Toy extends Component {
                       ))}
                     </select>
                   </div>
-                ) : null
-              ) : null
-            )}
+                ) : null}
 
-            <div
-              className="buy-toy"
-              onClick={() => {
-                this.props.order(true);
-                this.props.closeBasketToys(true);
-                this.setState({ order: true });
-                history.push("/");
-                document.body.style.overflow = "hidden";
+                <div
+                  className="buy-toy"
+                  onClick={() => {
+                    this.props.order(true);
+                    this.props.closeBasketToys(true);
+                    this.setState({ order: true });
+                    history.push("/");
+                    document.body.style.overflow = "hidden";
 
-                shoppingCart.push({
-                  id: localStorage.getItem("id"),
-                  image: localStorage.getItem("image1"),
-                  title: localStorage.getItem("title"),
-                  price: +localStorage.getItem("price"),
-                  quantityOfGoods: 1,
-                  colorsToy:
-                    this.state.colorsToy !== "undefined"
-                      ? this.state.colorsToy
-                      : "",
-                });
-              }}
-            >
-              Купить
+                    shoppingCart.push({
+                      id: localStorage.getItem("id"),
+                      image: localStorage.getItem("images"),
+                      title: localStorage.getItem("title"),
+                      price: +localStorage.getItem("price"),
+                      quantityOfGoods: 1,
+                      colorsToy:
+                        this.state.colorsToy !== "undefined"
+                          ? this.state.colorsToy
+                          : "",
+                    });
+                  }}
+                >
+                  Купить
+                </div>
+                <pre className="description">
+                  {localStorage.getItem("description")}
+                </pre>
+                <pre className="descriptionForWidth320px">
+                  {localStorage.getItem("descriptionForWidth320px")}
+                </pre>
+              </div>
             </div>
-            <pre className="description">
-              {localStorage.getItem("description")}
-            </pre>
-            <pre className="descriptionForWidth320px">
-              {localStorage.getItem("descriptionForWidth320px")}
-            </pre>
-          </div>
-        </div>
+          ) : null
+        )}
+
+        {toyDatabase.map((e) =>
+          +localStorage.getItem("id") === e.id ? (
+            e.video.length ? (
+              <div className="video-toy">
+                <video autoplay="autoplay" controls="controls">
+                  <source
+                    src={`/video/${e.video}`}
+                    type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'
+                  />
+                </video>
+              </div>
+            ) : null
+          ) : null
+        )}
       </div>
     );
   }

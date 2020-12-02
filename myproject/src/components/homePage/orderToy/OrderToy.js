@@ -21,6 +21,7 @@ class OrderToy extends Component {
       newMail: "",
       telephone: "",
       successfulSendingOfData: false,
+      delivery: "",
     };
   }
 
@@ -42,9 +43,11 @@ class OrderToy extends Component {
       body: JSON.stringify({
         firstName: this.state.firstName,
         lastName: this.state.lastName,
-        city: this.state.city,
-        newMail: this.state.newMail,
         telephone: this.state.telephone,
+        delivery:
+          this.state.delivery === "pickup" ? "Самовывоз" : "Новой почтой",
+        city: this.state.city === "" ? "Харьков" : this.state.city,
+        newMail: this.state.newMail === "" ? "Не нужно" : this.state.newMail,
         dataToys: dataToys,
       }),
     })
@@ -171,34 +174,51 @@ class OrderToy extends Component {
                     type="radio"
                     name="delivery"
                     id="radio1"
+                    value="pickup"
                     className="custom-radio"
+                    onChange={(e) =>
+                      this.setState({ delivery: e.target.value })
+                    }
                   />
-                  <label for="radio1">Самовывоз</label>
+                  <label htmlFor="radio1">Самовывоз</label>
                   <br />
                   <input
                     type="radio"
                     name="delivery"
                     id="radio2"
+                    value="newMail"
                     className="custom-radio"
+                    onChange={(e) =>
+                      this.setState({ delivery: e.target.value })
+                    }
                   />
-                  <label for="radio2">Новой почтой</label>
+                  <label htmlFor="radio2">Новой почтой</label>
                 </div>
-                <div className="city">
-                  Город <span>*</span>
-                  <input
-                    type="text"
-                    value={this.state.city}
-                    onChange={(e) => this.setState({ city: e.target.value })}
-                  />
-                </div>
-                <div className="newMail">
-                  Отделение новой почты <span>*</span>
-                  <input
-                    type="text"
-                    value={this.state.newMail}
-                    onChange={(e) => this.setState({ newMail: e.target.value })}
-                  />
-                </div>
+
+                {this.state.delivery === "newMail" ? (
+                  <div>
+                    <div className="city">
+                      Город <span>*</span>
+                      <input
+                        type="text"
+                        value={this.state.city}
+                        onChange={(e) =>
+                          this.setState({ city: e.target.value })
+                        }
+                      />
+                    </div>
+                    <div className="newMail">
+                      Отделение новой почты <span>*</span>
+                      <input
+                        type="text"
+                        value={this.state.newMail}
+                        onChange={(e) =>
+                          this.setState({ newMail: e.target.value })
+                        }
+                      />
+                    </div>
+                  </div>
+                ) : null}
                 <button
                   className="btn-form"
                   onClick={() => {
@@ -207,11 +227,16 @@ class OrderToy extends Component {
                     }, 0);
                   }}
                   disabled={
-                    !this.state.firstName ||
-                    !this.state.lastName ||
-                    !this.state.city ||
-                    !this.state.newMail ||
-                    !this.state.telephone
+                    this.state.delivery === "newMail"
+                      ? !this.state.firstName ||
+                        !this.state.lastName ||
+                        !this.state.telephone ||
+                        !this.state.city ||
+                        !this.state.newMail
+                      : !this.state.firstName ||
+                        !this.state.lastName ||
+                        !this.state.telephone ||
+                        !this.state.delivery
                   }
                 >
                   Оформить заказ

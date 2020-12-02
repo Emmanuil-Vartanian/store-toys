@@ -27,9 +27,10 @@ app.post("/user", (req, res) => {
     text: `Данные о заказе:
       Имя: ${req.body.firstName}
       Фамилия: ${req.body.lastName}
+      Телефон: ${req.body.telephone}
+      Доставка: ${req.body.delivery}
       Город: ${req.body.city}
       Отделение новой почты: ${req.body.newMail}
-      Телефон: ${req.body.telephone}
       
       Название игрушек: ${req.body.dataToys.map((obj) => obj.title)}
       Цена игрушек: ${req.body.dataToys.map((obj) => obj.price)}

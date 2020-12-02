@@ -53,13 +53,14 @@ class HomePage extends Component {
                   localStorage.setItem("price", el.price);
                   localStorage.setItem("description", el.description);
                   localStorage.setItem("descriptionForWidth320px", el.descriptionForWidth320px);
-                  localStorage.setItem("image1", el.image1);
-                  localStorage.setItem("image2", el.image2);
-                  localStorage.setItem("image3", el.image3);
+                  localStorage.setItem("images", el.images[0]);
+                  // localStorage.setItem("image1", el.image1);
+                  // localStorage.setItem("image2", el.image2);
+                  // localStorage.setItem("image3", el.image3);
                   localStorage.setItem("colors", el.colors[0]);
                 }}
               >
-                <Toys title={el.title} price={el.price} image1={el.image1} />
+                <Toys title={el.title} price={el.price} images={el.images} />
               </div>
             ))}
           </div>
