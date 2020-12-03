@@ -33,15 +33,40 @@ class HomePage extends Component {
     this.setState({ numberBuyToy: number });
   };
 
+  componentDidMount() {
+    function trackScroll() {
+      var scrolled = window.pageYOffset;
+      var coords = document.documentElement.clientHeight;
+
+      if (scrolled > coords) {
+        goTopBtn.classList.add("back_to_top-show");
+      }
+      if (scrolled < coords) {
+        goTopBtn.classList.remove("back_to_top-show");
+      }
+    }
+
+    function backToTop() {
+      if (window.pageYOffset > 0) {
+        window.scrollBy(0, -100);
+        setTimeout(backToTop, 30);
+      }
+    }
+
+    var goTopBtn = document.querySelector(".back_to_top");
+
+    window.addEventListener("scroll", trackScroll);
+    goTopBtn.addEventListener("click", backToTop);
+  }
+
   render() {
     return (
       <div className="home-page-toy">
         <SliderImages />
-        <div className="catalog-toys">
+        <div className="catalog-toys" style={{backgroundImage: "url(/images/home-fon.jpg)"}}>
           <div className="toysTitle">Игрушки</div>
           <div className="toys">
             {toyDatabase.map((el) => (
-              // console.log(el),
               <div
                 key={el.id}
                 className="home-toy"
@@ -52,12 +77,13 @@ class HomePage extends Component {
                   localStorage.setItem("title", el.title);
                   localStorage.setItem("price", el.price);
                   localStorage.setItem("description", el.description);
-                  localStorage.setItem("descriptionForWidth320px", el.descriptionForWidth320px);
+                  localStorage.setItem(
+                    "descriptionForWidth320px",
+                    el.descriptionForWidth320px
+                  );
                   localStorage.setItem("images", el.images[0]);
-                  // localStorage.setItem("image1", el.image1);
-                  // localStorage.setItem("image2", el.image2);
-                  // localStorage.setItem("image3", el.image3);
                   localStorage.setItem("colors", el.colors[0]);
+                  localStorage.setItem("video", el.video);
                 }}
               >
                 <Toys title={el.title} price={el.price} images={el.images} />
@@ -80,7 +106,7 @@ class HomePage extends Component {
             </div>
           </div>
         ) : null}
-        
+
         {this.state.order ? (
           <OrderToy
             closePurchase={this.closePurchase}
@@ -89,6 +115,8 @@ class HomePage extends Component {
             colorsToy={this.props.colorsToy}
           />
         ) : null}
+
+        <div class="back_to_top" style={{backgroundImage: "url(/images/up-arrow.png)"}}></div>
       </div>
     );
   }

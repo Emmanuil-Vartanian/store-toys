@@ -21,7 +21,32 @@ class Toy extends Component {
   };
 
   componentDidMount() {
-    window.scrollTo(0, 0);
+    if (localStorage.getItem("video")) {
+      var i = 1;
+      var int = setInterval(() => {
+        window.scrollTo(0, i);
+        i += 10;
+        if (i >= 2000) clearInterval(int);
+      }, 10);
+
+      const trackScroll = () => {
+        var scrolled = window.pageYOffset;
+        if (scrolled > 550) goTopBtn.classList.add("back_to_top-show");
+        if (scrolled < 550) goTopBtn.classList.remove("back_to_top-show");
+      }
+
+      const backToTop = () => {
+        if (window.pageYOffset > 0) {
+          window.scrollBy(0, -50);
+          setTimeout(backToTop, 30);
+        }
+      }
+
+      var goTopBtn = document.querySelector(".back_to_top");
+
+      window.addEventListener("scroll", trackScroll);
+      goTopBtn.addEventListener("click", backToTop);
+    }
   }
 
   render() {
@@ -134,6 +159,8 @@ class Toy extends Component {
             ) : null
           ) : null
         )}
+
+        <div class="back_to_top" style={{backgroundImage: "url(/images/up-arrow.png)"}}></div>
       </div>
     );
   }

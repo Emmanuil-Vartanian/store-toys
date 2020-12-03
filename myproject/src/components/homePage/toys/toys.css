@@ -1,5 +1,7 @@
 .card-toy {
   height: 100%;
+  box-shadow: 0 0 10px #000;
+  background: white;
 }
 
 .card-toy > img {
