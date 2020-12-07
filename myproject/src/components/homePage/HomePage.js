@@ -34,6 +34,10 @@ class HomePage extends Component {
   };
 
   componentDidMount() {
+    this.state.order
+      ? (document.body.style.overflow = "hidden")
+      : (document.body.style.overflow = "auto");
+
     function trackScroll() {
       var scrolled = window.pageYOffset;
       var coords = document.documentElement.clientHeight;
@@ -63,15 +67,23 @@ class HomePage extends Component {
     return (
       <div className="home-page-toy">
         <SliderImages />
-        <div className="catalog-toys" style={{backgroundImage: "url(/images/home-fon.jpg)"}}>
-          <div className="toysTitle">Игрушки</div>
+        <div
+          className="catalog-toys"
+          style={{
+            backgroundImage:
+              "url(https://images.clipartlogo.com/files/istock/previews/8074/80740917-christmas-background-with-light-bulbs-garlands.jpg)",
+          }}
+        >
+          <div className="toysTitle">
+            Хватит читать <p>Время покупать игрушки))</p>
+            <div>Шок контент 🙀</div>
+          </div>
           <div className="toys">
             {toyDatabase.map((el) => (
               <div
                 key={el.id}
                 className="home-toy"
                 onClick={() => {
-                  // console.log(el.colors);
                   history.push(`/${el.id}`);
                   localStorage.setItem("id", el.id);
                   localStorage.setItem("title", el.title);
@@ -92,7 +104,36 @@ class HomePage extends Component {
           </div>
         </div>
 
-        {this.state.closeBasketToys && !this.state.order ? (
+        <div className="footer">
+          <div className="about-delivery">
+            <div>
+              <p>О ДОСТАВКЕ</p>
+              Мы находимся в Харькове. Вы можете самостоятельно забрать игрушку
+              прямо из нашего офиса. Так же доступна доставка почтой, по всей
+              Украине.
+            </div>
+          </div>
+
+          <div className="contacts">
+            <div>
+              <p>КОНТАКТЫ</p>
+              Мы Креативные продюсеры кайфа <br />
+              Взамен на Ваши бабосики дарим Вам <br />
+              чуточку любви и детского счастья)
+              <br />
+              Давайте кайфанем от этого всесте ❤️‍ <br />
+              -0957473362(вайбер)
+              <br /> -@davidosi(телеграмм)
+              <br /> -0957473362(телеграмм)
+              <br />
+              Вот вам соц сети, для ваших изумительных вопросов и пожеланий.
+            </div>
+          </div>
+        </div>
+
+        {this.state.closeBasketToys &&
+        !this.state.order &&
+        shoppingCart.length ? (
           <div
             className="basket-toys"
             onClick={() => {
@@ -116,7 +157,10 @@ class HomePage extends Component {
           />
         ) : null}
 
-        <div class="back_to_top" style={{backgroundImage: "url(/images/up-arrow.png)"}}></div>
+        <div
+          className="back_to_top"
+          style={{ backgroundImage: "url(/images/up-arrow.png)" }}
+        ></div>
       </div>
     );
   }

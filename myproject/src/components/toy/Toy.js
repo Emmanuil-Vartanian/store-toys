@@ -21,26 +21,27 @@ class Toy extends Component {
   };
 
   componentDidMount() {
+    document.body.style.overflow = "auto";
     if (localStorage.getItem("video")) {
-      var i = 1;
+      var i = 10;
       var int = setInterval(() => {
         window.scrollTo(0, i);
         i += 10;
-        if (i >= 2000) clearInterval(int);
-      }, 10);
+        if (i >= 1000) clearInterval(int);
+      }, 15);
 
       const trackScroll = () => {
         var scrolled = window.pageYOffset;
-        if (scrolled > 550) goTopBtn.classList.add("back_to_top-show");
-        if (scrolled < 550) goTopBtn.classList.remove("back_to_top-show");
-      }
+        if (scrolled > 450) goTopBtn.classList.add("back_to_top-show");
+        if (scrolled < 450) goTopBtn.classList.remove("back_to_top-show");
+      };
 
       const backToTop = () => {
         if (window.pageYOffset > 0) {
           window.scrollBy(0, -50);
-          setTimeout(backToTop, 30);
+          setTimeout(backToTop, 50);
         }
-      }
+      };
 
       var goTopBtn = document.querySelector(".back_to_top");
 
@@ -51,14 +52,21 @@ class Toy extends Component {
 
   render() {
     return (
-      <div className="toy">
+      <div
+        className="toy"
+        style={
+          !localStorage.getItem("video")
+            ? { height: "100vh", backgroundImage: "url(/images/snow.gif)" }
+            : { height: "auto", backgroundImage: "url(/images/snow.gif)" }
+        }
+      >
         <div
           className="more-products"
           onClick={() => {
             history.push("/");
             this.props.order(false);
           }}
-        >{`<-- Больше товаров`}</div>
+        >{`👈 Больше товаров`}</div>
         <div
           className="back-products"
           onClick={() => {
@@ -72,7 +80,7 @@ class Toy extends Component {
 
         {toyDatabase.map((e) =>
           +localStorage.getItem("id") === e.id ? (
-            <div className="slider-description-toy">
+            <div key={e.id} className="slider-description-toy">
               <Carousel className="slider">
                 {e.images.length
                   ? e.images.map((e) => (
@@ -93,7 +101,7 @@ class Toy extends Component {
                   {localStorage.getItem("price")} грн.
                 </div>
                 {e.colors.length ? (
-                  <div key={e.id} className="choose-color">
+                  <div className="choose-color">
                     Цвет
                     <select
                       className="colors js-example-basic-single"
@@ -148,8 +156,8 @@ class Toy extends Component {
         {toyDatabase.map((e) =>
           +localStorage.getItem("id") === e.id ? (
             e.video.length ? (
-              <div className="video-toy">
-                <video autoplay="autoplay" controls="controls">
+              <div key={e.id} className="video-toy">
+                <video autoPlay="autoplay" controls="controls">
                   <source
                     src={`/video/${e.video}`}
                     type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'
@@ -160,7 +168,10 @@ class Toy extends Component {
           ) : null
         )}
 
-        <div class="back_to_top" style={{backgroundImage: "url(/images/up-arrow.png)"}}></div>
+        <div
+          className="back_to_top"
+          style={{ backgroundImage: "url(/images/up-arrow.png)" }}
+        ></div>
       </div>
     );
   }

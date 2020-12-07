@@ -66,7 +66,14 @@ class OrderToy extends Component {
 
   render() {
     return (
-      <div className="order-toy">
+      <div
+        className="order-toy"
+        // onMouseMove={(event) => console.log((this.value = event.clientX))}
+        onClick={() => {
+          console.log(document.querySelector(".order-toy").offsetWidth);
+          console.log("hi");
+        }}
+      >
         <div
           className="back-toy"
           onClick={() => {
@@ -81,13 +88,18 @@ class OrderToy extends Component {
           <div className="right-stick"></div>
         </div>
 
-        {this.state.shoppingCartDatabase.length === 0
+        {!this.state.shoppingCartDatabase.length
           ? (this.props.closePurchase(false),
-            (document.body.style.overflow = "auto"),
-            this.props.closeBasketToys(false))
+            (document.body.style.overflow = "auto"))
           : ""}
 
-        <div className="data-for-buying-toys">
+        <div
+          className="data-for-buying-toys"
+          onClick={(e) => {
+            console.log(e);
+            console.log(document.querySelector(".order-toy").offsetWidth);
+          }}
+        >
           <div className="order-title">Ваш заказ:</div>
 
           {!this.state.successfulSendingOfData ? (
@@ -113,7 +125,7 @@ class OrderToy extends Component {
               </div>
 
               <div className="order-price">
-                Сумма:{" "}
+                {"Сумма: "}
                 {this.state.shoppingCartDatabase.length !== 1
                   ? this.state.shoppingCartDatabase.reduce(
                       (p, c) => p + +c.price,
@@ -122,7 +134,7 @@ class OrderToy extends Component {
                   : this.state.shoppingCartDatabase.reduce(
                       (p, c) => +c.price * this.state.sumAllPriceToys,
                       0
-                    )}{" "}
+                    )}
                 грн.
               </div>
 

@@ -1,24 +1,52 @@
 .home-page-toy {
   position: relative;
+  overflow: auto;
 }
 
 .catalog-toys {
-  background-size: auto;
-  padding: 100px 70px;
+  padding: 130px 70px 60px;
   text-align: center;
+  background-size: auto;
 }
-
 
 .toysTitle {
   text-align: center;
   margin-bottom: 100px;
   font-size: 30px;
+  position: relative;
+}
+
+.toysTitle > div {
+  font-size: 14px;
+  transform: rotate(-45deg);
+  position: absolute;
+  /* top: 0px; */
+  right: -60px;
+  bottom: 0px;
+  /* top: 0px; */
+  right: -55px;
+  animation: content 0.2s ease-in-out 5;
+}
+
+@keyframes content {
+  0% {
+    transform: rotate(-360deg);
+  }
+  25% {
+    transform: rotate(-270deg);
+  }
+  50% {
+    transform: rotate(-180deg);
+  }
+  100% {
+    transform: rotate(-45deg);
+  }
 }
 
 .toys {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .home-toy {
@@ -90,14 +118,68 @@
   display: block;
 }
 
-/* @media screen and (max-width: 1200px) {
-  .paint {
-    background-image: url('../../../public/images/1200x555/Multi-set-for-creativity.jpg');
-    height: 555px;
+.footer {
+  padding: 130px 0 0;
+  text-align: center;
+  font-size: 20px;
+}
+
+.about-delivery {
+  padding: 100px 70px 220px;
+  font-size: 26px;
+  display: flex;
+  justify-content: center;
+}
+
+.about-delivery > div {
+  max-width: 700px;
+}
+
+.contacts {
+  font-size: 26px;
+  background-color: #1f2f3d;
+  color: white;
+  display: flex;
+  justify-content: center;
+}
+
+.contacts > div {
+  padding: 150px 0 160px;
+  background-color: #1f2f3d;
+  max-width: 700px;
+}
+
+@media screen and (max-width: 1139px) {
+  .home-toy {
+    max-width: 25%;
   }
-} */
+}
+
+@media screen and (max-width: 700px) {
+  .home-toy {
+    max-width: 37%;
+  }
+  .catalog-toys {
+    padding: 50px 40px;
+  }
+  .toysTitle {
+    margin-bottom: 60px;
+    font-size: 28px;
+  }
+}
 
 @media screen and (max-width: 480px) {
+  .home-toy {
+    margin: 0 15px 35px;
+    max-width: 40%;
+  }
+  .catalog-toys {
+    padding: 115px 10px;
+  }
+  .toysTitle {
+    margin-bottom: 80px;
+    font-size: 25px;
+  }
   .basket-toys {
     width: 50px;
     height: 50px;
@@ -118,5 +200,24 @@
     width: 40px;
     height: 40px;
     background-size: 40px;
+  }
+  .toysTitle > div {
+    font-size: 12px;
+    bottom: -35px;
+    right: -10px;
+  }
+  .footer {
+    padding: 0;
+    font-size: 20px;
+  }
+  .about-delivery {
+    padding: 170px 30px 220px;
+    font-size: 20px;
+  }
+  .contacts {
+    font-size: 18px;
+  }
+  .contacts > div {
+    padding: 150px 19px 180px;
   }
 }
